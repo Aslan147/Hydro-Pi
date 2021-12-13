@@ -1,0 +1,9 @@
+void setup() {
+  Serial.begin(9600); // Setz die Baud Rate auf 9600 bps
+}
+void loop() {
+  int value;
+  value = analogRead(0); // Welcher Pin im Arduino mit dem Analog output des Sensors angeschlossen ist
+  Serial.println(value); // Druckt den Wert aus
+  delay(100);
+}
