@@ -1,25 +1,25 @@
-const int AirValue = 577;   // Ersetzen Sie den Wert aus der Kalibrierung wenn der Sensor nicht im Wasser ist
-const int WaterValue = 260;  // Ersetzen Sie den Wert aus der Kalibrierung im Wasser
-int soilMoistureValue = 0;
-int soilmoisturepercent=0;
+const int Luftwert = 577;   // Ersetzen Sie den Wert aus der Kalibrierung wenn der Sensor nicht im Wasser ist
+const int Wasserwert = 260;  // Ersetzen Sie den Wert aus der Kalibrierung im Wasser
+int Erdenfeuchtigkeit = 0;
+int ErdenfeuchtigkeitProzent =0;
 void setup() {
   pinMode(13,OUTPUT); // Pin wo der Relay auslöser angeschlossen ist
   Serial.begin(9600); // Setz die Baud Rate auf 9600 bps
 }
 void loop() {
-soilMoistureValue = analogRead(A0);  // Welcher Pin im Arduino mit dem Analog output des Sensors angeschlossen ist
-Serial.println(soilMoistureValue);
-soilmoisturepercent = map(soilMoistureValue, AirValue, WaterValue, 0, 100);
-if(soilmoisturepercent < 10)  // Pumpe geht an wenn Feuchtigkeit weniger als 10 % ist
+Erdenfeuchtigkeit = analogRead(A0);  // Welcher Pin im Arduino mit dem Analog output des Sensors angeschlossen ist
+Serial.println(Erdenfeuchtigkeit);
+ErdenfeuchtigkeitProzent = map(Erdenfeuchtigkeit, Luftwert, Wasserwert, 0, 100);
+if(ErdenfeuchtigkeitProzent < 10)  // Pumpe geht an wenn Feuchtigkeit weniger als 10 % ist
 {
   Serial.println("Troken, Pumpe an :(");
-  digitalWrite(13,HIGH);  // Niedrige Feuchtigkeit, signal an Relay um Pumpe zu aktivieren
+  digitalWrite(13,HIGH);  // Niedrige Feuchtigkeit, Signal an Relay um Pumpe zu aktivieren
 }
-else if(soilmoisturepercent >85) // Mximale Wasserfeuchtigkeit 86 %
+else if(ErdenfeuchtigkeitProzent >85) // Mximale Wasserfeuchtigkeit über 85 %
 {
   Serial.println("Feucht, Pumpe aus :)");
-  digitalWrite(13,LOW);  // Höhere Feuchtigkeit, signal an Relay um Pumpe zu deaktivieren
+  digitalWrite(13,LOW);  // Höhere Feuchtigkeit, Signal an Relay um Pumpe zu deaktivieren
 }
  
-   delay(400); // Ein paar milisikunden pause, dann vorgang wiederholen.
+   delay(400); // Ein paar Milisikunden Pause, dann Vorgang wiederholen.
 }
