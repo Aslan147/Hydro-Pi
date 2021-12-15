@@ -12,7 +12,7 @@ Serial.println(Erdenfeuchtigkeit);
 ErdenfeuchtigkeitProzent = map(Erdenfeuchtigkeit, Luftwert, Wasserwert, 0, 100);
 if(ErdenfeuchtigkeitProzent < 10)  // Pumpe geht an wenn Feuchtigkeit weniger als 10 % ist
 {
-  Serial.println("Troken, Pumpe an :(");
+  Serial.println("Trocken, Pumpe an :(");
   digitalWrite(13,HIGH);  // Niedrige Feuchtigkeit, Signal an Relay um Pumpe zu aktivieren
 }
 else if(ErdenfeuchtigkeitProzent >85) // Mximale Wasserfeuchtigkeit über 85 %
